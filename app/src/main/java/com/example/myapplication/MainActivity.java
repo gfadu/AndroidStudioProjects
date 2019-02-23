@@ -1,7 +1,7 @@
 package com.example.myapplication;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 
@@ -13,16 +13,16 @@ public class MainActivity extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
         int c_year = calendar.get(Calendar.YEAR);
-        int c_month = (int) calendar.get(Calendar.MONTH);
-        int c_day = (int) calendar.get(Calendar.DATE);
+        int c_month = calendar.get(Calendar.MONTH);
+        int c_day = calendar.get(Calendar.DATE);
         c_month=c_month+1;
-        EditText Day=(EditText)findViewById(R.id.Day);
-        EditText Month=(EditText)findViewById(R.id.Month);
-        EditText Year=(EditText)findViewById(R.id.Year);
-        EditText D_month=(EditText)findViewById(R.id.D_month);
-        EditText D_day=(EditText)findViewById(R.id.D_day);
-        EditText D_hour=(EditText)findViewById(R.id.D_hour);
-        EditText D_min=(EditText)findViewById(R.id.D_min);
+        EditText Day= findViewById(R.id.Day);
+        EditText Month= findViewById(R.id.Month);
+        EditText Year= findViewById(R.id.Year);
+        EditText D_month= findViewById(R.id.D_month);
+        EditText D_day= findViewById(R.id.D_day);
+        EditText D_hour= findViewById(R.id.D_hour);
+        EditText D_min= findViewById(R.id.D_min);
 
         String V_day = Day.getText().toString();
         int vi_day=Integer.parseInt(V_day);
@@ -58,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
 
         double d_hour=d_day*24;
         double d_min=d_hour*60;
-        String temp1=Integer.toString(d_month1);
         String temp2=String.valueOf(d_day);
         String temp3=String.valueOf(d_hour);
         String temp4=String.valueOf(d_min);
@@ -66,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         D_day.setVisibility(View.VISIBLE);
         D_hour.setVisibility(View.VISIBLE);
         D_min.setVisibility(View.VISIBLE);
+        String temp1 = Integer.toString(d_month1);
         D_month.setText(temp1+" month");
         D_day.setText(temp2+" day");
         D_hour.setText(temp3+" hour");
