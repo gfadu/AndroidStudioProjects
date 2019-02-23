@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
         D_month.setText(temp1+" month");
         D_day.setText(temp2+" day");
         D_hour.setText(temp3+" hour");
-        D_min.setText(temp4+" min");
+        D_min.setText(temp4+" min");// i am tanmoy karmakar
     }
 
     @Override
