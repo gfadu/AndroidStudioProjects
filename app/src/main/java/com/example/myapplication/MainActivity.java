@@ -10,19 +10,16 @@ import java.util.Calendar;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText Day;
-    EditText Month;
-    EditText Year;
     public void Valentine(View view) {
 
         Calendar calendar = Calendar.getInstance();
         int c_year = calendar.get(Calendar.YEAR);
         int c_month = calendar.get(Calendar.MONTH);
         int c_day = calendar.get(Calendar.DATE);
-        Day = findViewById(R.id.Day);
-        Month = findViewById(R.id.Month);
-        Year = findViewById(R.id.Year);
         c_month = c_month + 1;
+        EditText Day = findViewById(R.id.Day);
+        EditText Month = findViewById(R.id.Month);
+        EditText Year = findViewById(R.id.Year);
         EditText D_month = findViewById(R.id.D_month);
         EditText D_day = findViewById(R.id.D_day);
         EditText D_hour = findViewById(R.id.D_hour);
@@ -39,19 +36,10 @@ public class MainActivity extends AppCompatActivity {
         String V_Month = Month.getText().toString();
         int Vi_month = Integer.parseInt(V_Month);
 
-        if(vi_day>31){
-            Toast.makeText(this, "No month has more than 31 days", Toast.LENGTH_LONG).show();
-            rollback();}
-        else if(Vi_month>12){
-            Toast.makeText(this, "No year has more than 12 months", Toast.LENGTH_LONG).show();
-            rollback();}
-        else if(Vi_month==2 && vi_day>28){
-            Toast.makeText(this, "February has 28 days", Toast.LENGTH_LONG).show();
-            rollback();}
-        else if (vi_year > c_year){
+        int Vi_day = Integer.parseInt(V_day);
+        if (vi_year > c_year) {
             Toast.makeText(this, "You cannot go to the future", Toast.LENGTH_LONG).show();
-            rollback();}
-        else {
+        } else {
             int d_year = c_year - vi_year;
             int d_month = d_year * 12;
             if (Vi_month > c_month) {
@@ -60,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
                 d_month = d_month + (Vi_month - c_month);
             }
             int d_month1 = Math.abs(d_month);
-            int d_day;
+            int d_day = 0;
             if (vi_day > c_day) {
                 d_day = (vi_day - c_day);
             } else {
@@ -89,11 +77,4 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
     }
-    public void rollback()
-    {
-        Day.setText("");
-        Month.setText("");
-        Year.setText("");
-    }
 }
-
