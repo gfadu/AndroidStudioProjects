@@ -9,8 +9,7 @@ import android.widget.Toast;
 import java.time.Year;
 import java.util.Calendar;
 
-import static java.sql.Types.NULL;
-
+//hi
 public class MainActivity extends AppCompatActivity {
 
     EditText Day ;
