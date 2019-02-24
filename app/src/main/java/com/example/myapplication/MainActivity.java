@@ -51,9 +51,19 @@ public class MainActivity extends AppCompatActivity {
             Day.setError("Field cannot be blank");
             Month.setError("Field cannot be blank");*/
 
-        if (vi_year > c_year) {
-            Toast.makeText(this, "You cannot go to the future", Toast.LENGTH_LONG).show();
-        } else {
+            if(vi_day>31){
+                Toast.makeText(this, "No month has more than 31 days", Toast.LENGTH_LONG).show();
+                rollback();}
+            else if(Vi_month>12){
+                Toast.makeText(this, "No year has more than 12 months", Toast.LENGTH_LONG).show();
+                rollback();}
+            else if(Vi_month==2 && vi_day>28){
+                Toast.makeText(this, "February has 28 days", Toast.LENGTH_LONG).show();
+                rollback();}
+            else if (vi_year > c_year){
+                Toast.makeText(this, "You cannot go to the future", Toast.LENGTH_LONG).show();
+                rollback();}
+         else {
             int d_year = c_year - vi_year;
             int d_month = d_year * 12;
             if (Vi_month > c_month) {
@@ -100,4 +110,11 @@ public class MainActivity extends AppCompatActivity {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_main);
         }
+
+    public void rollback()
+    {
+        Day.setText("");
+        Month.setText("");
+        Year.setText("");
+    }
     }
