@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.time.Year;
+//import java.time.Year;
 import java.util.Calendar;
 
 //hi
@@ -45,11 +45,6 @@ public class MainActivity extends AppCompatActivity {
         int Vi_month = Integer.parseInt(V_Month);
 
         int Vi_day = Integer.parseInt(V_day);
-        //if (V_day.isEmpty()  || V_Month.isEmpty() || V_year.isEmpty()) {
-        // Toast.makeText(this, "Enter fields correctly", Toast.LENGTH_LONG).show();
-            /*Year.setError("Field cannot be blank");
-            Day.setError("Field cannot be blank");
-            Month.setError("Field cannot be blank");*/
 
             if(vi_day>31){
                 Toast.makeText(this, "No month has more than 31 days", Toast.LENGTH_LONG).show();
@@ -57,45 +52,51 @@ public class MainActivity extends AppCompatActivity {
             else if(Vi_month>12){
                 Toast.makeText(this, "No year has more than 12 months", Toast.LENGTH_LONG).show();
                 rollback();}
-            else if(Vi_month==2 && vi_day>28){
+            else if(Vi_month==2 && vi_day>28 ){
                 Toast.makeText(this, "February has 28 days", Toast.LENGTH_LONG).show();
                 rollback();}
-            else if (vi_year > c_year){
+            else if (vi_year > c_year ){
                 Toast.makeText(this, "You cannot go to the future", Toast.LENGTH_LONG).show();
                 rollback();}
-         else {
-            int d_year = c_year - vi_year;
-            int d_month = d_year * 12;
-            if (Vi_month > c_month) {
-                d_month = d_month - (Vi_month - c_month);
-            } else {
-                d_month = d_month + (Vi_month - c_month);
-            }
-            int d_month1 = Math.abs(d_month);
-            int d_day = 0;
-            if (vi_day > c_day) {
-                d_day = (vi_day - c_day);
-            } else {
-                d_day = (c_day - vi_day);
+                else if(vi_day<=0 || Vi_month<=0 || vi_year<=0) {
+                Toast.makeText(this, "Calender does not have negetive numbers", Toast.LENGTH_LONG).show();
+                rollback();
             }
 
-            double d_hour = d_day * 24;
-            double d_min = d_hour * 60;
-            String temp2 = String.valueOf(d_day);
-            String temp3 = String.valueOf(d_hour);
-            String temp4 = String.valueOf(d_min);
-            D_month.setVisibility(View.VISIBLE);
-            D_day.setVisibility(View.VISIBLE);
-            D_hour.setVisibility(View.VISIBLE);
-            D_min.setVisibility(View.VISIBLE);
-            String temp1 = Integer.toString(d_month1);
-            D_month.setText(temp1 + " month");
-            D_day.setText(temp2 + " day");
-            D_hour.setText(temp3 + " hour");
-            D_min.setText(temp4 + " min");// i am tanmoy karmakar in the house
+         else {
+                int d_year = c_year - vi_year;
+                int d_month = d_year * 12;
+                if (Vi_month > c_month) {
+                    d_month = d_month - (Vi_month - c_month);
+                } else {
+                    d_month = d_month + (Vi_month - c_month);
+                }
+                int d_month1 = Math.abs(d_month);
+                int d_day;
+                if (vi_day > c_day) {
+                    d_day = (vi_day - c_day);
+                } else {
+                    d_day = (c_day - vi_day);
+                }
+
+                double d_hour = d_day * 24;
+                double d_min = d_hour * 60;
+                String temp2 = String.valueOf(d_day);
+                String temp3 = String.valueOf(d_hour);
+                String temp4 = String.valueOf(d_min);
+                D_month.setVisibility(View.VISIBLE);
+                D_day.setVisibility(View.VISIBLE);
+                D_hour.setVisibility(View.VISIBLE);
+                D_min.setVisibility(View.VISIBLE);
+                String temp1 = Integer.toString(d_month1);
+                D_month.setText(String.format("%s month", temp1));
+                D_day.setText(String.format("%s day", temp2));
+                D_hour.setText(String.format("%s hour", temp3));
+                D_min.setText(String.format("%s min", temp4));
         }
 
-    }catch (Exception e)
+    }
+    catch (Exception e)
         {
             //Toast.makeText(this, "Enter fields correctly", Toast.LENGTH_LONG).show();
             Year.setError("Field cannot be blank");
@@ -111,10 +112,10 @@ public class MainActivity extends AppCompatActivity {
             setContentView(R.layout.activity_main);
         }
 
-    public void rollback()
-    {
-        Day.setText("");
-        Month.setText("");
+        public void rollback()
+        {
+            Day.setText("");
+         Month.setText("");
         Year.setText("");
     }
     }
