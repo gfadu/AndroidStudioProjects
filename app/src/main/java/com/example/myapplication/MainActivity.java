@@ -6,9 +6,16 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.time.Year;
 import java.util.Calendar;
 
+import static java.sql.Types.NULL;
+
 public class MainActivity extends AppCompatActivity {
+
+    EditText Day ;
+    EditText Month ;
+    EditText Year;
 
     public void Valentine(View view) {
 
@@ -17,26 +24,34 @@ public class MainActivity extends AppCompatActivity {
         int c_month = calendar.get(Calendar.MONTH);
         int c_day = calendar.get(Calendar.DATE);
         c_month = c_month + 1;
-        EditText Day = findViewById(R.id.Day);
-        EditText Month = findViewById(R.id.Month);
-        EditText Year = findViewById(R.id.Year);
-        EditText D_month = findViewById(R.id.D_month);
-        EditText D_day = findViewById(R.id.D_day);
-        EditText D_hour = findViewById(R.id.D_hour);
-        EditText D_min = findViewById(R.id.D_min);
-        //Toast.makeText(this,"clicked",Toast.LENGTH_LONG).show();
+        try {
+            Day = findViewById(R.id.Day);
+            Month = findViewById(R.id.Month);
+            Year = findViewById(R.id.Year);
+            EditText D_month = findViewById(R.id.D_month);
+            EditText D_day = findViewById(R.id.D_day);
+            EditText D_hour = findViewById(R.id.D_hour);
+            EditText D_min = findViewById(R.id.D_min);
+            //Toast.makeText(this,"clicked",Toast.LENGTH_LONG).show();
 
-        String V_day = Day.getText().toString();
-        int vi_day = Integer.parseInt(V_day);
+            String V_day = Day.getText().toString();
+            int vi_day = Integer.parseInt(V_day);
 
 
-        String V_year = Year.getText().toString();
-        int vi_year = Integer.parseInt(V_year);
+            String V_year = Year.getText().toString();
+            int vi_year = Integer.parseInt(V_year);
+
 
         String V_Month = Month.getText().toString();
         int Vi_month = Integer.parseInt(V_Month);
 
         int Vi_day = Integer.parseInt(V_day);
+        //if (V_day.isEmpty()  || V_Month.isEmpty() || V_year.isEmpty()) {
+        // Toast.makeText(this, "Enter fields correctly", Toast.LENGTH_LONG).show();
+            /*Year.setError("Field cannot be blank");
+            Day.setError("Field cannot be blank");
+            Month.setError("Field cannot be blank");*/
+
         if (vi_year > c_year) {
             Toast.makeText(this, "You cannot go to the future", Toast.LENGTH_LONG).show();
         } else {
@@ -70,11 +85,20 @@ public class MainActivity extends AppCompatActivity {
             D_hour.setText(temp3 + " hour");
             D_min.setText(temp4 + " min");// i am tanmoy karmakar in the house
         }
-    }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
+    }catch (Exception e)
+        {
+            //Toast.makeText(this, "Enter fields correctly", Toast.LENGTH_LONG).show();
+            Year.setError("Field cannot be blank");
+            Day.setError("Field cannot be blank");
+            Month.setError("Field cannot be blank");
+        }
+
 }
+
+        @Override
+        protected void onCreate (Bundle savedInstanceState){
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_main);
+        }
+    }
